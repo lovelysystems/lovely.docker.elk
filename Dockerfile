@@ -3,7 +3,7 @@
 
 FROM centos:7
 MAINTAINER Lovely Systems https://github.com/lovelysystems/lovely.elk
-
+LABEL version="0.0.1"
 
 # ------------------------------------------------------------------------------
 # Settings
