@@ -27,12 +27,10 @@ Exposed Ports:
 
 Exposed Volumes:
 
-These volumes can be used to extend the configuration of the tools.
-
-    /var/elasticsearch : data volume for the elasticsearch database
-    /etc/elasticsearch : configuation for elasticsearch
-    /etc/supervisord : supervisord configuration
-    /etc/logstash : logstash configuration
+    - /var/elasticsearch : data volume for the elasticsearch database
+    - /etc/elasticsearch : configuation for elasticsearch
+    - /etc/supervisord : supervisord configuration
+    - /etc/logstash : logstash configuration
 
 You should mount the elasticsearch data volume to a persistent place.
 
