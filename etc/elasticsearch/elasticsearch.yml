@@ -1,0 +1,10 @@
+path:
+    logs:  /var/log/elasticsearch
+    data:  /var/elasticsearch
+http:
+    host: 0.0.0.0
+    cors:
+        enabled: true
+        allow-origin: "/.*/"
+cluster:
+    name: lovely-elk
