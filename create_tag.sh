@@ -25,8 +25,8 @@ then
 fi
 
 # check if master == origin/master
-MASTER_COMMIT=`git show --format="%H" master`
-ORIGINMASTER_COMMIT=`git show --format="%H" origin/master`
+MASTER_COMMIT=`git show -s --format="%H" master`
+ORIGINMASTER_COMMIT=`git show -s --format="%H" origin/master`
 
 if [ "$MASTER_COMMIT" != "$ORIGINMASTER_COMMIT" ]
 then
