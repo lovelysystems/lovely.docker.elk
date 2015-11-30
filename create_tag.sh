@@ -40,7 +40,7 @@ fi
 
 # check if tag to create has already been created
 echo "Check if tag already exists"
-VERSION=`grep "LABEL version "Dockerfile | cut -d'"' -f2`
+VERSION=`grep "LABEL version" Dockerfile | cut -d'"' -f2`
 EXISTS=`git tag | grep $VERSION`
 
 if [ "$VERSION" == "$EXISTS" ]
