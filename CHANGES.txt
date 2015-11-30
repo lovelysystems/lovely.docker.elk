@@ -1,0 +1,9 @@
+============================
+Changes of lovely.docker.elk
+============================
+
+2015/11/30 0.0.2
+================
+
+ - fixed memory leak related to Kibanas node server
+
