@@ -1,7 +1,7 @@
 # Lovely Dockerfile for ELK stack
 # Elasticsearch 2.0, Logstash 2.0, Kibana 4.2
 
-FROM centos:7
+FROM centos:6
 MAINTAINER Lovely Systems https://github.com/lovelysystems/lovely.elk
 LABEL version="0.0.1"
 
@@ -28,6 +28,7 @@ RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch \
 # Kibana
 
 RUN mkdir ${KIBANA_HOME} \
+ && yum install -y tar which \
  && curl -O https://download.elastic.co/kibana/kibana/${KIBANA_PACKAGE} \
  && tar xzf ${KIBANA_PACKAGE} -C ${KIBANA_HOME} --strip-components=1 \
  && rm -f ${KIBANA_PACKAGE} \
