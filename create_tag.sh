@@ -16,6 +16,7 @@ echo "Fetching origin..."
 git fetch origin > /dev/null
 
 # check if current branch is master
+echo "Check current branch"
 BRANCH=`git branch | grep "^*" | cut -d " " -f 2`
 if [ "$BRANCH" != "master" ]
 then
@@ -24,7 +25,9 @@ then
    exit -1
 fi
 
+
 # check if master == origin/master
+echo "Compare with origin"
 MASTER_COMMIT=`git show -s --format="%H" master`
 ORIGINMASTER_COMMIT=`git show -s --format="%H" origin/master`
 
@@ -36,6 +39,7 @@ then
 fi
 
 # check if tag to create has already been created
+echo "Check if tag already exists"
 VERSION=`grep "LABEL version "Dockerfile | cut -d'"' -f2`
 EXISTS=`git tag | grep $VERSION`
 
@@ -47,6 +51,7 @@ then
 fi
 
 # check if VERSION is in head of CHANGES.txt
+echo "Check if CHANGES.txt entry exists"
 REV_NOTE=`grep "[0-9/]\{10\} $VERSION" CHANGES.txt`
 if [ -z "$REV_NOTE" ]
 then
