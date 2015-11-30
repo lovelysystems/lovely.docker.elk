@@ -53,7 +53,10 @@ This command will start the image:
 
 .. _note:
 
-To avoid a memory leak in kibanas node instace the node server will be started with the flag --max-old-space-size=250 by default. To overwrite this value set the environment variable 'NODE_OPTIONS' while running the container. For example like this::
+To avoid a memory leak in kibanas node instance the node server will be
+started with the flag --max-old-space-size=250 by default. To overwrite this
+value set the environment variable 'NODE_OPTIONS' while running the container.
+For example like this::
 
     $ docker run -e "NODE_OPTIONS=--max-old-space-size=100" -d lovelysystems/elk
 
