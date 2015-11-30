@@ -3,7 +3,7 @@
 
 FROM centos:6
 MAINTAINER Lovely Systems https://github.com/lovelysystems/lovely.elk
-LABEL version="0.0.1"
+LABEL version="0.0.2"
 
 # ------------------------------------------------------------------------------
 # Settings
@@ -35,6 +35,12 @@ RUN mkdir ${KIBANA_HOME} \
  && groupadd -r kibana \
  && useradd -r -s /usr/sbin/nologin -d ${KIBANA_HOME} -c "Kibana service user" -g kibana kibana \
  && chown -R kibana:kibana ${KIBANA_HOME}
+
+# Patch kibanas node exec command due to memory leak
+# For details see https://github.com/elastic/kibana/issues/5170
+RUN sed  -i '/exec /i \
+    NODE_OPTIONS="${NODE_OPTIONS:=--max-old-space-size=250}"' /opt/kibana/bin/kibana && \
+    sed -i 's/exec "\${NODE}"/exec "\${NODE}" ${NODE_OPTIONS}/' /opt/kibana/bin/kibana
 
 # ------------------------------------------------------------------------------
 # default settings

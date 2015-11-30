@@ -49,3 +49,17 @@ Run It
 This command will start the image:
 
     $ docker run -p 5601:5601 -p 9200:9200 -p 9001:9001 -p 5000:5000 -d lovelysystems/elk
+
+
+.. _note:
+
+To avoid a memory leak in kibanas node instace the node server will be started with the flag --max-old-space-size=250 by default. To overwrite this value set the environment variable 'NODE_OPTIONS' while running the container. For example like this::
+
+    $ docker run -e "NODE_OPTIONS=--max-old-space-size=100" -d lovelysystems/elk
+
+Alternatively you can overwrite this value while building a container
+depending on lovelysystems/elk by setting the proper ENV variable in the
+Dockerfile. For example like this::
+
+    FROM lovelysystems/elk:latest
+    ENV NODE_OPTIONS --max-old-space-size=100
