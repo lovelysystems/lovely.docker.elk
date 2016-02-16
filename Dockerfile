@@ -10,6 +10,7 @@ LABEL version="0.0.2"
 
 ENV ELASTICSEARCH_VERSION 2.0.0
 ENV LOGSTASH_VERSION 2.0.0
+ENV LOGSTASH_INPUT_BEATS 0.9.6
 
 ENV KIBANA_HOME /opt/kibana
 ENV KIBANA_PACKAGE kibana-4.2.0-linux-x64.tar.gz
@@ -54,18 +55,19 @@ RUN ln -s /etc/elasticsearch /usr/share/elasticsearch/config \
  && chown elasticsearch:elasticsearch /var/elasticsearch
 
 # ------------------------------------------------------------------------------
-# Elasticsearch plugins:
-# RUN /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/2.0
-# RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+# upgrade logstash plugins
+RUN /opt/logstash/bin/plugin install --version ${LOGSTASH_INPUT_BEATS} logstash-input-beats
+
 
 # ------------------------------------------------------------------------------
 # expose ports
 #  5000 : logstash luberjack
+#  5044 : logstash filebeat
 #  5601 : kibana
 #  9001 : supervisor
 #  9200 : elasticsearch http
 #  9300 : elasticseach transport
-EXPOSE 5000 5601 9001 9200 9300
+EXPOSE 5000 5044 5601 9001 9200 9300
 
 # ------------------------------------------------------------------------------
 # expose volumes
