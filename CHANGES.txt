@@ -2,6 +2,11 @@
 Changes of lovely.docker.elk
 ============================
 
+2016/02/16 0.0.3
+================
+
+ - install specific version of logstash-filebeat-plugin
+
 2015/11/30 0.0.2
 ================
 
